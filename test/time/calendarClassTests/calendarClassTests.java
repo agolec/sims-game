@@ -1,11 +1,11 @@
-package time.dayClassTests;
+package time.calendarClassTests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import time.Calendar;
 
 @Test()
-public class dayClassTests{
+public class calendarClassTests {
     public void assertCalendarIntegerOfDayInMonth(){
         Calendar calendar = new Calendar();
         for (int i = 1; i < calendar.getLastDayInMonth(); i++){
