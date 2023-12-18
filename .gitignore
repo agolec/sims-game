@@ -30,3 +30,4 @@ replay_pid*
 #author added
 *.iml
 out
+.idea/libraries
