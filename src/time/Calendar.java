@@ -3,9 +3,6 @@ package time;
 public class Calendar {
     private final int FIRST_DAY_IN_MONTH = 1;
     private final int FINAL_DAY_IN_MONTH = 30;
-    private int daysInYear[] = {FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH,
-            FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH,
-            FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH};
     private DayOfWeek currentWeekDay;
     private int currentDayOfMonth;
     private Month currentMonth;
@@ -15,9 +12,6 @@ public class Calendar {
         this.currentDayOfMonth = FIRST_DAY_IN_MONTH;
         this.currentWeekDay = DayOfWeek.MONDAY;
     }
-    public int getDate(){
-        return daysInYear[currentDayOfMonth];
-    }
 
     /**
      * incrementCurrentDay will increment the current day of the month in this class's calendar.
@@ -26,18 +20,18 @@ public class Calendar {
      * incrementCurrentMonth(), resetCurrentDayToFirstDay() and setCalendarDayToCurrentDay().
      */
     public void incrementCurrentDay(){
-        boolean currentDayIsFinalDayOfMonth = (this.currentDayOfMonth == FINAL_DAY_IN_MONTH);
-        if(currentDayIsFinalDayOfMonth){
+        if(currentDayIsFinalDayOfMonth()){
             incrementCurrentMonth();
             resetCurrentDayToFirstDay();
-            setCalendarDayToCurrentDay();
         } else {
             this.currentDayOfMonth++;
-            //this.calendar[this.currentMonth.ordinal()] = this.currentDay;
-            setCalendarDayToCurrentDay();
         }
         //Day of week always increments, so do this outside conditional statement.
         incrementDayOfWeek();
+    }
+
+    private boolean currentDayIsFinalDayOfMonth() {
+        return this.currentDayOfMonth == FINAL_DAY_IN_MONTH;
     }
 
     private void incrementCurrentMonth(){
@@ -60,9 +54,6 @@ public class Calendar {
         this.currentDayOfMonth = this.FIRST_DAY_IN_MONTH;
 
     }
-    private void setCalendarDayToCurrentDay(){
-        this.daysInYear[this.currentMonth.ordinal()] = this.currentDayOfMonth;
-    }
     private void incrementDayOfWeek(){
         switch(this.currentWeekDay){
             case SUNDAY -> this.currentWeekDay = DayOfWeek.MONDAY;
@@ -75,7 +66,7 @@ public class Calendar {
         }
     }
     public int getCalendarDate(){
-        return this.daysInYear[this.currentMonth.ordinal()];
+        return this.currentDayOfMonth;
     }
     public Month getCurrentMonth(){
         return this.currentMonth;
