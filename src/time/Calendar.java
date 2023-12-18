@@ -3,20 +3,20 @@ package time;
 public class Calendar {
     private final int FIRST_DAY_IN_MONTH = 1;
     private final int FINAL_DAY_IN_MONTH = 30;
-    private int calendar[] = {FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH,
+    private int daysInYear[] = {FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH,
             FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH,
             FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH};
     private DayOfWeek currentWeekDay;
-    private int currentDay;
+    private int currentDayOfMonth;
     private Month currentMonth;
 
     public Calendar(){
         this.currentMonth = Month.JANUARY;
-        this.currentDay = FIRST_DAY_IN_MONTH;
+        this.currentDayOfMonth = FIRST_DAY_IN_MONTH;
         this.currentWeekDay = DayOfWeek.MONDAY;
     }
     public int getDate(){
-        return calendar[currentDay];
+        return daysInYear[currentDayOfMonth];
     }
 
     /**
@@ -26,13 +26,13 @@ public class Calendar {
      * incrementCurrentMonth(), resetCurrentDayToFirstDay() and setCalendarDayToCurrentDay().
      */
     public void incrementCurrentDay(){
-        boolean currentDayIsFinalDayOfMonth = (this.currentDay == FINAL_DAY_IN_MONTH);
+        boolean currentDayIsFinalDayOfMonth = (this.currentDayOfMonth == FINAL_DAY_IN_MONTH);
         if(currentDayIsFinalDayOfMonth){
             incrementCurrentMonth();
             resetCurrentDayToFirstDay();
             setCalendarDayToCurrentDay();
         } else {
-            this.currentDay++;
+            this.currentDayOfMonth++;
             //this.calendar[this.currentMonth.ordinal()] = this.currentDay;
             setCalendarDayToCurrentDay();
         }
@@ -57,11 +57,11 @@ public class Calendar {
         }
     }
     private void resetCurrentDayToFirstDay(){
-        this.currentDay = this.FIRST_DAY_IN_MONTH;
+        this.currentDayOfMonth = this.FIRST_DAY_IN_MONTH;
 
     }
     private void setCalendarDayToCurrentDay(){
-        this.calendar[this.currentMonth.ordinal()] = this.currentDay;
+        this.daysInYear[this.currentMonth.ordinal()] = this.currentDayOfMonth;
     }
     private void incrementDayOfWeek(){
         switch(this.currentWeekDay){
@@ -75,7 +75,7 @@ public class Calendar {
         }
     }
     public int getCalendarDate(){
-        return this.calendar[this.currentMonth.ordinal()];
+        return this.daysInYear[this.currentMonth.ordinal()];
     }
     public Month getCurrentMonth(){
         return this.currentMonth;
