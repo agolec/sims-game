@@ -3,14 +3,28 @@ package time;
 public class Calendar {
     private final int FIRST_DAY_IN_MONTH = 1;
     private final int FINAL_DAY_IN_MONTH = 30;
-    private DayOfWeek currentWeekDay;
-    private int currentDayOfMonth;
     private Month currentMonth;
+    private int currentDayOfMonth;
+    private DayOfWeek currentWeekDay;
+
 
     public Calendar(){
         this.currentMonth = Month.JANUARY;
         this.currentDayOfMonth = FIRST_DAY_IN_MONTH;
         this.currentWeekDay = DayOfWeek.MONDAY;
+    }
+    public Month getCurrentMonth(){
+        return this.currentMonth;
+    }
+    public int getCalendarDate(){
+        return this.currentDayOfMonth;
+    }
+    public DayOfWeek getCurrentWeekDay(){
+        return this.currentWeekDay;
+    }
+
+    public int getLastDayInMonth(){
+        return this.FINAL_DAY_IN_MONTH;
     }
 
     /**
@@ -33,7 +47,6 @@ public class Calendar {
     private boolean currentDayIsFinalDayOfMonth() {
         return this.currentDayOfMonth == FINAL_DAY_IN_MONTH;
     }
-
     private void incrementCurrentMonth(){
         switch(this.currentMonth){
             case JANUARY -> this.currentMonth = Month.FEBRUARY;
@@ -64,18 +77,6 @@ public class Calendar {
             case FRIDAY -> this.currentWeekDay = DayOfWeek.SATURDAY;
             case SATURDAY -> this.currentWeekDay = DayOfWeek.SUNDAY;
         }
-    }
-    public int getCalendarDate(){
-        return this.currentDayOfMonth;
-    }
-    public Month getCurrentMonth(){
-        return this.currentMonth;
-    }
-    public int getLastDayInMonth(){
-        return this.FINAL_DAY_IN_MONTH;
-    }
-    public DayOfWeek getCurrentWeekDay(){
-        return this.currentWeekDay;
     }
     public String toString(){
         String currentInfo = "Current Date: " + getCalendarDate() + "\n"
