@@ -1,6 +1,6 @@
 package time;
 
-public class Day {
+public class Calendar {
     private final int FIRST_DAY_IN_MONTH = 1;
     private final int FINAL_DAY_IN_MONTH = 30;
     private int calendar[] = {FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH, FIRST_DAY_IN_MONTH,
@@ -10,7 +10,7 @@ public class Day {
     private int currentDay;
     private Month currentMonth;
 
-    public Day(){
+    public Calendar(){
         this.currentMonth = Month.JANUARY;
         this.currentDay = FIRST_DAY_IN_MONTH;
         this.currentWeekDay = DayOfWeek.MONDAY;
