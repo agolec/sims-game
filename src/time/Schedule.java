@@ -5,12 +5,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Schedule extends Calendar {
+public class Schedule {
     List<DayOfWeek> schedule;
     private int FIVE_DAY_WORK_WEEK = 5;
     private final List<DayOfWeek> daysOfTheWeek = Arrays.asList(DayOfWeek.values());
+    private Calendar calendar;
 
-    public Schedule(){
+    public Schedule(Calendar calendar){
+        this.calendar = new Calendar(calendar);
         this.schedule = setSchedule();
     }
     public Schedule(int daysToWork){
@@ -33,7 +35,6 @@ public class Schedule extends Calendar {
     }
     public List<DayOfWeek> generateSchedule(final int daysToWork){
         int numberOfDaysToWork = daysToWork;
-        System.out.println("length of doww.values: " + DayOfWeek.values().length);
         if(numberOfDaysToWork > DayOfWeek.values().length){
             numberOfDaysToWork = DayOfWeek.values().length;
         }
@@ -51,6 +52,24 @@ public class Schedule extends Calendar {
     public void clearSchedule(){
         if(this.schedule != null){
             this.schedule.clear();
+        }
+    }
+    public String toString(){
+        String str = "The current date is :" + calendar.getCurrentWeekDay() +
+                calendar.getCurrentMonth().toString() + " " +
+                calendar.getCurrentDayOfMonth();
+        if(isWorkingToday()){
+            str += "User is working today.";
+        } else {
+            str += "user is not working today.";
+        }
+        return str;
+    }
+    public boolean isWorkingToday(){
+        if(this.getSchedule().contains(calendar.getCurrentWeekDay())){
+            return true;
+        } else {
+            return false;
         }
     }
 }
