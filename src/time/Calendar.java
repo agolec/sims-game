@@ -13,14 +13,20 @@ public class Calendar {
         this.currentDayOfMonth = FIRST_DAY_IN_MONTH;
         this.currentWeekDay = DayOfWeek.MONDAY;
     }
+    public Calendar(Calendar originCalendar){
+        this.currentMonth = originCalendar.getCurrentMonth();
+        this.currentDayOfMonth = originCalendar.getCurrentDayOfMonth();
+        this.currentWeekDay = originCalendar.getCurrentWeekDay();
+    }
     public Month getCurrentMonth(){
         return this.currentMonth;
     }
-    public int getCalendarDate(){
-        return this.currentDayOfMonth;
-    }
+
     public DayOfWeek getCurrentWeekDay(){
         return this.currentWeekDay;
+    }
+    public int getCurrentDayOfMonth(){
+        return this.currentDayOfMonth;
     }
 
     public int getLastDayInMonth(){
@@ -79,9 +85,9 @@ public class Calendar {
         }
     }
     public String toString(){
-        String currentInfo = "Current Date: " + getCalendarDate() + "\n"
-                + "Current Day of Week: " + this.currentWeekDay + "\n"
-                + "Current Month: " + this.currentMonth + "\n";
+        String currentInfo = "Current Date: " + this.getCurrentDayOfMonth() + "\n"
+                + "Current Day of Week: " + this.getCurrentWeekDay() + "\n"
+                + "Current Month: " + this.getCurrentMonth() + "\n";
         return currentInfo;
     }
 
