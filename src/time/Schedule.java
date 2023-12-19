@@ -12,7 +12,7 @@ public class Schedule {
     private Calendar calendar;
 
     public Schedule(Calendar calendar){
-        this.calendar = new Calendar(calendar);
+        this.calendar = Calendar.getInstance();
         this.schedule = setSchedule();
     }
     public Schedule(int daysToWork){

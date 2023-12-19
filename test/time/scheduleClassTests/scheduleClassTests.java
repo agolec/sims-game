@@ -7,7 +7,7 @@ import time.Schedule;
 @Test
 public class scheduleClassTests {
     public void test(){
-        Calendar cal = new Calendar();
+        Calendar cal = Calendar.getInstance();
         Schedule playerSchedule = new Schedule(cal);
         playerSchedule.clearSchedule();
         playerSchedule.setSchedule(3);

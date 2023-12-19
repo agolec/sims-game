@@ -6,17 +6,24 @@ public class Calendar {
     private Month currentMonth;
     private int currentDayOfMonth;
     private DayOfWeek currentWeekDay;
+    private static Calendar singleInstance  = null;
 
 
-    public Calendar(){
+    private Calendar(){
         this.currentMonth = Month.JANUARY;
         this.currentDayOfMonth = FIRST_DAY_IN_MONTH;
         this.currentWeekDay = DayOfWeek.MONDAY;
     }
-    public Calendar(Calendar originCalendar){
-        this.currentMonth = originCalendar.getCurrentMonth();
-        this.currentDayOfMonth = originCalendar.getCurrentDayOfMonth();
-        this.currentWeekDay = originCalendar.getCurrentWeekDay();
+//    public Calendar(Calendar originCalendar){
+//        this.currentMonth = originCalendar.getCurrentMonth();
+//        this.currentDayOfMonth = originCalendar.getCurrentDayOfMonth();
+//        this.currentWeekDay = originCalendar.getCurrentWeekDay();
+//    }
+    public static synchronized Calendar getInstance(){
+        if(singleInstance == null){
+            singleInstance = new Calendar();
+        }
+        return singleInstance;
     }
     public Month getCurrentMonth(){
         return this.currentMonth;

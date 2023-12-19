@@ -5,7 +5,7 @@ import time.Month;
 
 public class CalendarTest {
     public static void main(String[] args){
-        Calendar calendar = new Calendar();
+        Calendar calendar = Calendar.getInstance();
         System.out.println(calendar);
 
         boolean doneOneJanuaryLoop = false;
