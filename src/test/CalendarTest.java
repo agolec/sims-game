@@ -5,13 +5,13 @@ import time.Month;
 
 public class CalendarTest {
     public static void main(String[] args){
-        Calendar calendar = new Calendar();
+        Calendar calendar = Calendar.getInstance();
         System.out.println(calendar);
 
         boolean doneOneJanuaryLoop = false;
         do{
             for(int i = 0; i < calendar.getLastDayInMonth(); i++){
-                if(calendar.getCurrentMonth() == Month.DECEMBER && calendar.getCalendarDate() == 27){
+                if(calendar.getCurrentMonth() == Month.DECEMBER && calendar.getCurrentDayOfMonth() == 27){
                     System.out.println("break here.");
                 }
                 calendar.incrementCurrentDay();
