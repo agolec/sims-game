@@ -7,12 +7,14 @@ public class Calendar {
     private int currentDayOfMonth;
     private DayOfWeek currentWeekDay;
     private static Calendar singleInstance  = null;
+    private Season currentSeason = null;
 
 
     private Calendar(){
         this.currentMonth = Month.JANUARY;
         this.currentDayOfMonth = FIRST_DAY_IN_MONTH;
         this.currentWeekDay = DayOfWeek.MONDAY;
+        this.currentSeason = setSeason();
     }
 //    public Calendar(Calendar originCalendar){
 //        this.currentMonth = originCalendar.getCurrentMonth();
@@ -91,6 +93,36 @@ public class Calendar {
             case SATURDAY -> this.currentWeekDay = DayOfWeek.SUNDAY;
         }
     }
+    public Season setSeason(){
+        Season newSeason = null;
+        switch(this.currentMonth){
+            case DECEMBER:
+            case JANUARY:
+            case FEBRUARY:
+                newSeason = Season.WINTER;
+                break;
+            case MARCH:
+            case APRIL:
+            case MAY:
+                newSeason = Season.SPRING;
+                break;
+            case JUNE:
+            case JULY:
+            case AUGUST:
+                newSeason = Season.SUMMER;
+                break;
+            case SEPTEMBER:
+            case OCTOBER:
+            case NOVEMBER:
+                newSeason = Season.FALL;
+                break;
+        }
+        return newSeason;
+    }
+    public Season getCurrentSeason(){
+        return this.getCurrentSeason();
+    }
+
     public String toString(){
         String currentInfo = "Current Date: " + this.getCurrentDayOfMonth() + "\n"
                 + "Current Day of Week: " + this.getCurrentWeekDay() + "\n"
