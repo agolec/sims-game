@@ -1,2 +1,5 @@
-package time;public enum Season {
+package time;
+
+public enum Season {
+    SPRING,SUMMER,FALL,WINTER
 }
