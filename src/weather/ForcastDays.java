@@ -29,7 +29,7 @@ public class ForcastDays {
         int[] probabilities = new int[DAYS_OF_FORCAST];
         probabilities = generateProbabilities(DAYS_OF_FORCAST);
 
-
+        return null;
     }
     private int[] generateProbabilities(int size){
 //        int[] probabilities = new int[size];
