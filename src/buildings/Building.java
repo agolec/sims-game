@@ -10,6 +10,11 @@ public class Building {
         setAddress(address);
         setPropertyType(propertyType);
     }
+    public Building(Building source){
+        this.setName(source.getName());
+        this.setAddress(source.getAddress());
+        this.setPropertyType(source.getPropertyType());
+    }
 
     public String getName() {
         return name;
