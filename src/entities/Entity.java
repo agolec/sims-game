@@ -8,12 +8,16 @@ public abstract class Entity {
 
     public Entity(String name) throws InvalidEntityNameException {
         this.generateId();
-        if(name.isBlank() || name.isEmpty()){
+        if(name == null || name.isBlank() || name.isEmpty()){
             throw new InvalidEntityNameException("Error: Entity name cannot be blank or empty.");
         }
+        setName(name);
     }
     private void generateId(){
         idNumber++;
+    }
+    private void setName(String name){
+        this.name = name;
     }
     public int getId(){
         return this.idNumber;
