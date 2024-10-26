@@ -22,10 +22,8 @@ public abstract class Entity {
         return this.name;
     }
     public String getString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("ID: " + this.getId() + "\n");
-        sb.append("Name: " + this.getName() + "\n");
-        return sb.toString();
+        return "ID: " + this.getId() + "\n" +
+        "Name: " + this.getName() + ".";
     }
 
 
