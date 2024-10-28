@@ -28,12 +28,10 @@ public abstract class Item extends Entity {
     }
     public String toString(){
 
-        String itemString = "ID: " + super.getId() + "\n" +
+        return "ID: " + super.getId() + "\n" +
                 "Name: " + super.getName() + "\n" +
                 "Description" + this.getType() + "\n" +
                 "Price: $" + this.getPrice();
-
-        return itemString;
 
     }
 
