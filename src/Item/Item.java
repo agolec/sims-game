@@ -76,6 +76,7 @@ public abstract class Item extends Entity {
 
         return "ID: " + super.getId() + "\n" +
                 "Type: " + this.getType() + "\n" +
+                "Owner" + this.getOwner().getName() + "\n" +
                 "Name: " + super.getName() + "\n" +
                 "Description" + this.getDescription() + "\n" +
                 "Price: $" + this.getPrice();
