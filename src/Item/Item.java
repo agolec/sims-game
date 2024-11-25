@@ -18,22 +18,21 @@ public abstract class Item extends Entity {
     private String description;
 
     boolean keyItem;
-    int quantity;
-    public Item(String name, ItemType type, Sim owner, Double price, String description,boolean isKeyItem,int quantity) throws InvalidEntityNameException, InvalidItemPriceException {
+    public Item(String name, ItemType type, Sim owner, Double price, String description,boolean isKeyItem) throws InvalidEntityNameException, InvalidItemPriceException {
         super(name);
         this.setType(type);
         this.setOwner(owner);
         this.setPrice(price);
         this.setDescription(description);
         this.setKeyItem(isKeyItem);
-        this.setQuantity(quantity);
     }
-    public Item(String name, ItemType type, Sim owner, Double price) throws InvalidEntityNameException, InvalidItemPriceException {
+    public Item(String name, ItemType type, Sim owner, Double price,boolean isKeyItem) throws InvalidEntityNameException, InvalidItemPriceException {
         super(name);
         this.setType(type);
         this.setOwner(owner);
         this.setPrice(price);
         this.setDescription("");
+        this.setKeyItem(isKeyItem());
     }
     public abstract void use();
     public void setType(ItemType type){
