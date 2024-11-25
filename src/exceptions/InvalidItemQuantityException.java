@@ -1,2 +1,7 @@
-package exceptions;public class InvalidItemQuantityException {
+package exceptions;
+
+public class InvalidItemQuantityException extends Exception {
+    public InvalidItemQuantityException(String message){
+        super(message);
+    }
 }
