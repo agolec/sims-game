@@ -73,11 +73,6 @@ public abstract class Item extends Entity {
 
     public void setKeyItem(boolean keyItem) {
         this.keyItem = keyItem;
-    } public void setQuantity(int quantity) throws InvalidItemQuantityException {
-        if(quantity < 0){
-            throw new InvalidItemQuantityException("Error: Quantity for item can not be negative.");
-        }
-        this.quantity = quantity;
     }
 
     public ItemType getType(){
@@ -94,9 +89,6 @@ public abstract class Item extends Entity {
     }
     public boolean isKeyItem() {
         return this.keyItem;
-    }
-    public int getQuantity() {
-        return this.quantity;
     }
     public boolean hasOwner(){
         return SimUtils.simExists(this.owner);
