@@ -4,6 +4,7 @@ import entities.Entity;
 import entities.Sim;
 import exceptions.InvalidEntityNameException;
 import exceptions.InvalidItemPriceException;
+import exceptions.InvalidItemQuantityException;
 import utils.EntityUtils;
 import utils.SimUtils;
 
@@ -15,12 +16,17 @@ public abstract class Item extends Entity {
     private Sim owner;
     private double price;
     private String description;
-    public Item(String name, ItemType type, Sim owner, Double price, String description) throws InvalidEntityNameException, InvalidItemPriceException {
+
+    boolean keyItem;
+    int quantity;
+    public Item(String name, ItemType type, Sim owner, Double price, String description,boolean isKeyItem,int quantity) throws InvalidEntityNameException, InvalidItemPriceException {
         super(name);
         this.setType(type);
         this.setOwner(owner);
         this.setPrice(price);
         this.setDescription(description);
+        this.setKeyItem(isKeyItem);
+        this.setQuantity(quantity);
     }
     public Item(String name, ItemType type, Sim owner, Double price) throws InvalidEntityNameException, InvalidItemPriceException {
         super(name);
@@ -30,7 +36,6 @@ public abstract class Item extends Entity {
         this.setDescription("");
     }
     public abstract void use();
-    public abstract Item addToInventory();
     public void setType(ItemType type){
         this.type = type;
     }
@@ -40,8 +45,17 @@ public abstract class Item extends Entity {
      * @param intendedOwner - The sim the Item is trying to apply ownership to.
      * @throws InvalidEntityNameException - If Sim Entity does not have a name assigned to them, this will be thrown
      */
-    public void setOwner(Sim intendedOwner) throws InvalidEntityNameException {
-        this.owner = (SimUtils.simExists(intendedOwner)) ? new Sim(intendedOwner): null;
+    public void setOwner(Sim intendedOwner) {
+        if(hasOwner()){
+            this.owner = intendedOwner;
+        }
+        else {
+            this.owner = null;
+        }
+    }
+    //Removes any ownership of the item. Sets it to null.
+    public void unsetOwner(){
+        this.owner = null;
     }
     public void setPrice(Double price) throws InvalidItemPriceException {
         if(this.price < 0){
@@ -57,6 +71,16 @@ public abstract class Item extends Entity {
     public void setDescription(String description){
         this.description = (description != null) ? description : "";
     }
+
+    public void setKeyItem(boolean keyItem) {
+        this.keyItem = keyItem;
+    } public void setQuantity(int quantity) throws InvalidItemQuantityException {
+        if(quantity < 0){
+            throw new InvalidItemQuantityException("Error: Quantity for item can not be negative.");
+        }
+        this.quantity = quantity;
+    }
+
     public ItemType getType(){
         return this.type;
     }
@@ -68,6 +92,12 @@ public abstract class Item extends Entity {
     }
     public String getDescription(){
         return this.description;
+    }
+    public boolean isKeyItem() {
+        return this.keyItem;
+    }
+    public int getQuantity() {
+        return this.quantity;
     }
     public boolean hasOwner(){
         return SimUtils.simExists(this.owner);
