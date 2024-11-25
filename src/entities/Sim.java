@@ -33,4 +33,9 @@ public class Sim extends Entity implements InventoryHolder {
     public void removeItemFromInventory(Item item, int quantity) {
         this.inventory.removeItem(item,quantity);
     }
+
+    @Override
+    public int getInventorySize() {
+        return this.inventory.getInventorySize();
+    }
 }
