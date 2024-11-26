@@ -1,11 +1,9 @@
-package Item;
+package item;
 
 import entities.Entity;
 import entities.Sim;
 import exceptions.InvalidEntityNameException;
 import exceptions.InvalidItemPriceException;
-import exceptions.InvalidItemQuantityException;
-import utils.EntityUtils;
 import utils.SimUtils;
 
 /**
