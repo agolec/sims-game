@@ -47,4 +47,7 @@ public class Inventory {
             inventorySlots.remove(slotToRemove);
         }
     }
+    public int getInventorySize(){
+        return this.inventorySlots.size();
+    }
 }
