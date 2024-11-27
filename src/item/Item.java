@@ -19,11 +19,11 @@ public abstract class Item extends Entity {
         this.setDescription(description);
         this.setKeyItem(isKeyItem);
     }
-    public Item(String name, ItemType type, Sim owner,boolean isKeyItem) throws InvalidEntityNameException {
+    public Item(String name, Sim owner,boolean isKeyItem) throws InvalidEntityNameException {
         super(name);
         this.setOwner(owner);
         this.setDescription("");
-        this.setKeyItem(isKeyItem());
+        this.setKeyItem(isKeyItem);
     }
     /**
      * @param intendedOwner - The sim the Item is trying to apply ownership to.
