@@ -10,37 +10,23 @@ import utils.SimUtils;
  * The Item class is meant to be the base class for any implementation of an item.
  */
 public abstract class Item extends Entity {
-    private ItemType type;
     private Sim owner;
-    private double price;
     private String description;
-
     boolean keyItem;
-    public Item(String name, ItemType type, Sim owner, Double price, String description,boolean isKeyItem) throws InvalidEntityNameException, InvalidItemPriceException {
+    public Item(String name, Sim owner, String description,boolean isKeyItem) throws InvalidEntityNameException {
         super(name);
-        this.setType(type);
         this.setOwner(owner);
-        this.setPrice(price);
         this.setDescription(description);
         this.setKeyItem(isKeyItem);
     }
-    public Item(String name, ItemType type, Sim owner, Double price,boolean isKeyItem) throws InvalidEntityNameException, InvalidItemPriceException {
+    public Item(String name, Sim owner,boolean isKeyItem) throws InvalidEntityNameException {
         super(name);
-        this.setType(type);
         this.setOwner(owner);
-        this.setPrice(price);
         this.setDescription("");
-        this.setKeyItem(isKeyItem());
+        this.setKeyItem(isKeyItem);
     }
-    public abstract void use();
-    public void setType(ItemType type){
-        this.type = type;
-    }
-
     /**
-     *
      * @param intendedOwner - The sim the Item is trying to apply ownership to.
-     * @throws InvalidEntityNameException - If Sim Entity does not have a name assigned to them, this will be thrown
      */
     public void setOwner(Sim intendedOwner) {
         if(hasOwner()){
@@ -54,12 +40,6 @@ public abstract class Item extends Entity {
     public void unsetOwner(){
         this.owner = null;
     }
-    public void setPrice(Double price) throws InvalidItemPriceException {
-        if(this.price < 0){
-            throw new InvalidItemPriceException("Error: Item price less than 0.");
-        }
-        this.price = price;
-    }
 
     /**
      * description is optional. If String given to description is null for any reason, then an empty string will be given.
@@ -68,19 +48,11 @@ public abstract class Item extends Entity {
     public void setDescription(String description){
         this.description = (description != null) ? description : "";
     }
-
     public void setKeyItem(boolean keyItem) {
         this.keyItem = keyItem;
     }
-
-    public ItemType getType(){
-        return this.type;
-    }
     public Sim getOwner(){
         return this.owner;
-    }
-    public Double getPrice(){
-        return this.price;
     }
     public String getDescription(){
         return this.description;
@@ -92,14 +64,20 @@ public abstract class Item extends Entity {
         return SimUtils.simExists(this.owner);
     }
     public String toString(){
-
         return "ID: " + super.getId() + "\n" +
-                "Type: " + this.getType() + "\n" +
                 "Owner" + this.getOwner().getName() + "\n" +
                 "Name: " + super.getName() + "\n" +
-                "Description" + this.getDescription() + "\n" +
-                "Price: $" + this.getPrice();
-
+                "Key Item: " + this.keyItemText() + "\n" +
+                "Description" + this.getDescription() + "\n";
     }
 
+    /**
+     *
+     * @return - Test "Yes" if item is a key item. "No" if not. Used when printing Item's toString method.
+     */
+    private String keyItemText(){
+        final String YES = "Yes";
+        final String NO = "No";
+        return this.isKeyItem() ? YES : NO;
+    }
 }
