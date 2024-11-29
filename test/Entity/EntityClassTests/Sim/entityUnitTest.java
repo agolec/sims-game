@@ -8,7 +8,7 @@ import entities.Sim;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
-public class entityClassTests {
+public class entityUnitTest {
     final String VALID_ENTITY_NAME = "Ted";
     private final String EXPECTED_EXCEPTION_MESSAGE_TEXT = "Error: Entity name cannot be blank, null, or empty.";
     @Test
