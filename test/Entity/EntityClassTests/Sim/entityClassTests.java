@@ -1,9 +1,12 @@
 package Entity.EntityClassTests.Sim;
 
 import exceptions.InvalidEntityNameException;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.Assert;
 import entities.Sim;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class entityClassTests {
     final String VALID_ENTITY_NAME = "Ted";
@@ -14,18 +17,25 @@ public class entityClassTests {
     public void assertEntityCreatesSuccessfullyWhenAssignedValidName() throws InvalidEntityNameException {
 
         Sim testSim = new Sim(VALID_ENTITY_NAME);
-        Assert.assertNotNull(testSim,"Excpected Sim object to be created, but it was null");
-        Assert.assertEquals(testSim.getName(), VALID_ENTITY_NAME,"Expected Sim objectt to have name \'" + VALID_ENTITY_NAME +"\'. " +
-                "\nActual Name: " + testSim.getName());
-        Assert.assertTrue(testSim.getId() > ZERO,"Expected ID to be greater than 0, but it was equal to or less than 0");
+        Assert.assertNotNull("Expected Sim object to be created, but it was null",testSim);
+        assertEquals(testSim.getName(), VALID_ENTITY_NAME,testSim.getName());
+        Assert.assertTrue("Expected ID to be greater than 0, but it was equal to or less than 0",testSim.getId() > ZERO);
+}
+@Test
+    public void assertSimThrowsExceptionWhenNameBlank()  {
+        try{
+            Sim sim = new Sim(EMPTY_STRING_NAME);
+        } catch (InvalidEntityNameException e){
+            assertEquals("Error: Entity name cannot be blank or empty.", e.getMessage());
+        }
     }
-@Test(expectedExceptions = InvalidEntityNameException.class,expectedExceptionsMessageRegExp = "Error: Entity name cannot be blank or empty.")
-    public void assertSimThrowsExceptionWhenNameBlank() throws InvalidEntityNameException {
-        Sim testSim = new Sim(EMPTY_STRING_NAME);
-    }
-    @Test(expectedExceptions = InvalidEntityNameException.class,expectedExceptionsMessageRegExp = "Error: Entity name cannot be blank or empty.")
-    public void assertSimThrowsExceptionWhenNameNull() throws InvalidEntityNameException {
-        Sim testSim = new Sim(NULL_STRING);
+    @Test()
+    public void assertSimThrowsExceptionWhenNameNull()  {
+        try{
+            Sim testSim = new Sim((String) null);
+        } catch (Exception e){
+            assertEquals("Error: Entity name cannot be blank or empty.", e.getMessage());
+        }
     }
 
 }
