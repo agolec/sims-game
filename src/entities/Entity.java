@@ -9,7 +9,7 @@ public abstract class Entity {
     public Entity(String name) throws InvalidEntityNameException {
         this.generateId();
         if(name == null || name.isBlank() || name.isEmpty()){
-            throw new InvalidEntityNameException("Error: Entity name cannot be blank or empty.");
+            throw new InvalidEntityNameException("Error: Entity name cannot be blank, null, or empty.");
         }
         setName(name);
     }
