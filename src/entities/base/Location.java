@@ -25,6 +25,26 @@ public abstract class Location {
         this.description = description;
         this.connections = new ArrayList<>();
     }
+    public Location(String name, String description, ArrayList<Location> connections){
+        if(name == null){
+            throw new IllegalArgumentException("Error: Name cannot be null.");
+        }
+        if(name.trim().isBlank() || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Error: Location name cannot be blank or empty.");
+        }
+        if(description == null){
+            throw new IllegalArgumentException("Error: Location Description cannot be null.");
+        }
+        if(description.trim().isEmpty() || description.trim().isBlank()){
+            throw new IllegalArgumentException("Error: Location Description cannot be empty or blank.");
+        }
+        this.name = name;
+        this.description = description;
+        this.connections = new ArrayList<>();
+        for(Location connection: connections){
+            this.addConnection(connection);
+        }
+    }
 
     /**
      *
@@ -46,6 +66,9 @@ public abstract class Location {
                 location.addConnection(this);
 
             }
+        }
+        else{
+            System.out.println("Location set. No connection to other rooms yet.");
         }
     }
 
