@@ -4,8 +4,6 @@ import entities.Entity;
 import entities.Sim;
 import entities.base.Location;
 import item.Item;
-import utils.EntityUtils;
-
 import java.util.ArrayList;
 
 public class Room  extends Location {
@@ -24,19 +22,23 @@ public class Room  extends Location {
         }
     }
     public String printRoomEntities(){
-        String sb = "";
+        String entitiesInRoom = "";
         int entityCount = 0;
         if(this.entitiesInRoom.isEmpty()){
             return "No entities in Room.";
         }
+        String entityType;
+        String entityName;
         for(Entity entity: this.entitiesInRoom){
             entityCount++;
-            if(entity instanceof Sim){
-                sb += entityCount + " Sim :" + entity.getName() + "\n";
-            } else if (entity instanceof Item){
-                sb += entityCount + "Item :" + entity.getName() + "\n";
-            }
+            entityType = entity.getTypeName();
+            entityName = entity.getName();
+            entitiesInRoom += entityCount + " " + entity.getTypeName() + " : " + entity.getName() + "\n";
         }
-        return sb;
+        return entitiesInRoom;
     }
+    public ArrayList<Entity> getEntities(){
+        return new ArrayList<>(this.entitiesInRoom);
+    }
+
 }
