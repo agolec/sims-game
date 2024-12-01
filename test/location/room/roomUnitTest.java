@@ -27,11 +27,11 @@ public class roomUnitTest {
         final String ROOM_DESCRIPTION = "a " + ROOM_NAME + " to a home.";
 
         foyer = new Room(ROOM_NAME,ROOM_DESCRIPTION);
-        System.out.println(foyer.getRoomEntities());
+        System.out.println(foyer.printRoomEntities());
         //placing entity in room.
         foyer.addEntity(testSim);
         foyer.addEntity(testSim2);
-        System.out.println(foyer.getRoomEntities());
+        System.out.println(foyer.printRoomEntities());
     }
 
 }

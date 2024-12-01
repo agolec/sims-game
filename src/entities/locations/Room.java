@@ -4,6 +4,7 @@ import entities.Entity;
 import entities.Sim;
 import entities.base.Location;
 import item.Item;
+import utils.EntityUtils;
 
 import java.util.ArrayList;
 
@@ -22,10 +23,10 @@ public class Room  extends Location {
             this.entitiesInRoom.add(entity);
         }
     }
-    public String getRoomEntities(){
+    public String printRoomEntities(){
         String sb = "";
         int entityCount = 0;
-        if(this.entitiesInRoom.size() == 0){
+        if(this.entitiesInRoom.isEmpty()){
             return "No entities in Room.";
         }
         for(Entity entity: this.entitiesInRoom){
