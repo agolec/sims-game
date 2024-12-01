@@ -27,12 +27,8 @@ public class Room  extends Location {
         if(this.entitiesInRoom.isEmpty()){
             return "No entities in Room.";
         }
-        String entityType;
-        String entityName;
         for(Entity entity: this.entitiesInRoom){
             entityCount++;
-            entityType = entity.getTypeName();
-            entityName = entity.getName();
             entitiesInRoom += entityCount + " " + entity.getTypeName() + " : " + entity.getName() + "\n";
         }
         return entitiesInRoom;
