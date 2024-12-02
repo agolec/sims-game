@@ -25,6 +25,7 @@ public abstract class Entity {
     public String getName(){
         return this.name;
     }
+    public String getTypeName(){return this.getClass().getSimpleName();}
     public String getString(){
         return "ID: " + this.getId() + "\n" +
         "Name: " + this.getName() + ".";
