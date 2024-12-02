@@ -2,6 +2,7 @@ package entities.locations;
 
 import entities.Entity;
 import entities.Sim;
+import entities.base.Interactable;
 import entities.base.Location;
 import item.Item;
 import java.util.ArrayList;
@@ -17,9 +18,11 @@ public class Room  extends Location {
         entitiesInRoom = new ArrayList<>();
     }
     public void addEntity(Entity entity){
-        if(entity != null){
+        if(entity instanceof Interactable){
             this.entitiesInRoom.add(entity);
+            return;
         }
+        System.err.println("Error: Entity is not interactable. Only an interactable entity can be added to a room.");
     }
     public String printRoomEntities(){
         String entitiesInRoom = "";
