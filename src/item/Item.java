@@ -2,6 +2,7 @@ package item;
 
 import entities.Entity;
 import entities.Sim;
+import entities.base.Interactable;
 import exceptions.InvalidEntityNameException;
 import exceptions.InvalidItemPriceException;
 import utils.SimUtils;
@@ -9,7 +10,7 @@ import utils.SimUtils;
 /**
  * The Item class is meant to be the base class for any implementation of an item.
  */
-public abstract class Item extends Entity {
+public abstract class Item extends Entity implements Interactable {
     private Sim owner;
     private String description;
     boolean keyItem;
@@ -79,5 +80,10 @@ public abstract class Item extends Entity {
         final String YES = "Yes";
         final String NO = "No";
         return this.isKeyItem() ? YES : NO;
+    }
+
+    @Override
+    public void interact() {
+        System.out.println("Interaction with item...");
     }
 }
