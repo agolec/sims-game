@@ -1,11 +1,12 @@
 package entities;
 
+import entities.base.Interactable;
 import exceptions.InvalidEntityNameException;
 import inventory.Inventory;
 import inventory.InventoryHolder;
 import item.Item;
 
-public class Sim extends Entity implements InventoryHolder {
+public class Sim extends Entity implements InventoryHolder, Interactable {
 
     private Inventory inventory;
     public Sim(String name) throws InvalidEntityNameException {
@@ -37,5 +38,10 @@ public class Sim extends Entity implements InventoryHolder {
     @Override
     public int getInventorySize() {
         return this.inventory.getInventorySize();
+    }
+
+    @Override
+    public void interact() {
+        System.out.println("Interacted with sim...");
     }
 }
