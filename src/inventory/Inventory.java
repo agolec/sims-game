@@ -1,53 +1,53 @@
 package inventory;
+import entities.Entity;
+import entities.Sim;
+import exceptions.InvalidEntityNameException;
 import item.Item;
+import item.food.FoodItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private Item item;
-    private List<InventorySlot> inventorySlots;
+    private ArrayList<Item> inventoryItems;
 
-    public Inventory(){
-        this.inventorySlots = new ArrayList<>();
+    public Inventory() throws InvalidEntityNameException {
+
+        this.inventoryItems = new ArrayList<>();
     }
-    public void addItem(Item item, int quantity){
-        for(InventorySlot slot: this.inventorySlots){
-            if(slot.getItem().equals(item)){
-                slot.addQuantity(quantity);
-                return;
-            }
-        }
-        this.inventorySlots.add(new InventorySlot(item,quantity));
+    public Inventory(ArrayList<Item> items) throws InvalidEntityNameException {
+        this.inventoryItems = new ArrayList<>(items);
+    }
+    public void addItem(Item item) {
+        this.inventoryItems.add(item);
+    }
+    public void removeOwner(Item item){
+        inventoryItems.remove(item);
     }
 
     /**
      *
      * @param item - Item desired to be removed from a sim's inventory.
-     * @param quantity - Quantity of item wished to be removed.
      */
-    public void removeItem(Item item, int quantity){
-        InventorySlot slotToRemove = null;
-        for(InventorySlot slot: this.inventorySlots){
-            if(slot.getItem().equals(item)){
-                if(item.isKeyItem() && slot.getQuantity() <= quantity){
-                    System.out.println("Cannot remove the last copy of a key item!");
-                    return;
-                }
 
-                slot.removeQuantity(quantity);
-                if(slot.getQuantity() == 0){
-                    slotToRemove = slot;
-                }
-                break;
-            }
+    public int getInventorySize(){
+        return this.inventoryItems.size();
+    }
+    public void displayItems(){
+        if(this.inventoryItems.isEmpty()){
+            System.out.println("No items in inventory.");
         }
-
-        if(slotToRemove != null){
-            inventorySlots.remove(slotToRemove);
+        for (int i = 0; i < this.getInventorySize(); i++){
+            System.out.println((i + 1) + ". " + inventoryItems.get(i).getName());
         }
     }
-    public int getInventorySize(){
-        return this.inventorySlots.size();
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(Item item : this.inventoryItems){
+            sb.append("-----");
+            sb.append(item.toString());
+            sb.append("-----");
+        }
+        return sb.toString();
     }
 }
