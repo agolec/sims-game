@@ -26,6 +26,13 @@ public abstract class Item extends Entity implements Interactable {
         this.setDescription("");
         this.setKeyItem(isKeyItem);
     }
+    public Item(Item sourceItem) throws InvalidEntityNameException {
+        super(sourceItem.getName());
+        this.setOwner(sourceItem.getOwner());
+        this.setDescription(sourceItem.getDescription());
+        this.setKeyItem(sourceItem.isKeyItem());
+
+    }
     /**
      * @param intendedOwner - The sim the Item is trying to apply ownership to.
      */
