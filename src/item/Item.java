@@ -83,18 +83,18 @@ public abstract class Item extends Entity implements Interactable {
     }
 
     public String toString() {
-        String string;
-        string = "ID: " + super.getId() + "\n";
-        if (this.hasOwner()) {
-            string += "Owner; " + this.getOwner().toString();
-        } else {
-            string += "Owner: none \n";
-        }
-        string += "Name: " + super.getName() + "\n";
-        string += "Key Item: " + this.keyItemText() + "\n";
-        string += "Description: " + this.getDescription() + "\n";
-        return string;
+        StringBuilder sb = new StringBuilder();
+        sb.append("ID: ").append(super.getId()).append("\n");
+        sb.append("Name: ").append(super.getName()).append("\n")
+        .append("Key Item: ").append(this.keyItemText()).append("\n");
+        sb.append(SimUtils.getOwnerString(this));
+        sb.append("Description: ").append(this.getDescription()).append("\n");
+        return sb.toString();
     }
+
+//    private String getOwnerString() {
+//        return this.hasOwner() ? "Owner: " + this.getOwner().toString() + "\n" : "Owner: none \n";
+//    }
 
     /**
      *
