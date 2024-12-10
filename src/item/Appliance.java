@@ -25,7 +25,6 @@ public class Appliance extends Item {
             case APPLIANCE_STATE.DIRTY -> System.out.println("Dirty " + this.getName());
             case APPLIANCE_STATE.BROKEN -> System.out.println("Broken " + this.getName());
         }
-        switch(this.)
     }
     void repair(){
         System.out.println("Repairing " + this.getName());
