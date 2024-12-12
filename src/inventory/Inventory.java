@@ -1,53 +1,95 @@
 package inventory;
+import entities.Entity;
+import entities.Sim;
+import exceptions.InvalidEntityNameException;
 import item.Item;
+import item.food.FoodItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private Item item;
-    private List<InventorySlot> inventorySlots;
+    private ArrayList<Item> inventoryItems;
 
-    public Inventory(){
-        this.inventorySlots = new ArrayList<>();
+    public Inventory() throws InvalidEntityNameException {
+
+        this.inventoryItems = new ArrayList<>();
     }
-    public void addItem(Item item, int quantity){
-        for(InventorySlot slot: this.inventorySlots){
-            if(slot.getItem().equals(item)){
-                slot.addQuantity(quantity);
-                return;
+    public Inventory(ArrayList<Item> items) throws InvalidEntityNameException {
+        this.inventoryItems = new ArrayList<>(items);
+    }
+    public void addItem(Item item) {
+        this.inventoryItems.add(item);
+    }
+    public void removeOwner(String itemName,boolean removeFromInventory){
+        final int ITEM_NOT_FOUND = -1;
+        if(itemInInventory(itemName) && getItemIndex(itemName) != ITEM_NOT_FOUND){
+            this.inventoryItems.get(getItemIndex(itemName)).setOwner(null);
+            if(removeFromInventory){
+                System.out.println("Removing" + this.inventoryItems.get(getItemIndex(itemName)) + " from inventory.");
+                removeItemFromInventory(itemName);
+            }
+            System.out.println("Item successfully removed owner from inventory item.");
+        } else {
+            System.out.println("Item not in inventory.");
+        }
+    }
+    public void removeItemFromInventory(String itemName){
+        this.inventoryItems.remove(getItemIndex(itemName));
+    }
+
+
+    public int getInventorySize(){
+        return this.inventoryItems.size();
+    }
+    public void displayItems(){
+        if(this.inventoryItems.isEmpty()){
+            System.out.println("No items in inventory.");
+        }
+        for (int i = 0; i < this.getInventorySize(); i++){
+            System.out.println((i + 1) + ". " + inventoryItems.get(i).getName());
+        }
+    }
+    public Item getItemByIndex(int i){
+        return this.inventoryItems.get(i);
+    }
+    public int getItemIndex(String itemName){
+        for(int i = 0; i < this.inventoryItems.size(); i++){
+            if(itemInInventory(itemName)){
+                return i;
             }
         }
-        this.inventorySlots.add(new InventorySlot(item,quantity));
+        return -1;
     }
 
     /**
      *
-     * @param item - Item desired to be removed from a sim's inventory.
-     * @param quantity - Quantity of item wished to be removed.
+     * @param itemName - String of an item to search for in an inventory, ignoring case
+     * @return - true if present, false if not.
      */
-    public void removeItem(Item item, int quantity){
-        InventorySlot slotToRemove = null;
-        for(InventorySlot slot: this.inventorySlots){
-            if(slot.getItem().equals(item)){
-                if(item.isKeyItem() && slot.getQuantity() <= quantity){
-                    System.out.println("Cannot remove the last copy of a key item!");
-                    return;
-                }
-
-                slot.removeQuantity(quantity);
-                if(slot.getQuantity() == 0){
-                    slotToRemove = slot;
-                }
-                break;
+    public boolean itemInInventory(String itemName){
+        for(Item item: this.inventoryItems){
+            if(item.getName().equalsIgnoreCase(itemName)){
+                return true;
             }
         }
-
-        if(slotToRemove != null){
-            inventorySlots.remove(slotToRemove);
-        }
+        return false;
     }
-    public int getInventorySize(){
-        return this.inventorySlots.size();
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+        for(Item item : this.inventoryItems){
+            sb.append("-----\n");
+            sb.append("Item ");
+            sb.append(i);
+            sb.append("\n");
+            sb.append(item.toString());
+            sb.append("-----\n");
+            i++;
+        }
+        if(sb.isEmpty()){
+            sb.append("no items in inventory.");
+        }
+        return sb.toString();
     }
 }
