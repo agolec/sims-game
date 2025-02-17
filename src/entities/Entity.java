@@ -4,7 +4,8 @@ import exceptions.InvalidEntityNameException;
 
 public abstract class Entity {
     private String name;
-    private int idNumber;
+    private static int instanceCount;
+    private int entityId;
 
     public Entity(String name) throws InvalidEntityNameException {
         this.generateId();
@@ -14,13 +15,13 @@ public abstract class Entity {
         setName(name);
     }
     private void generateId(){
-        idNumber++;
+        this.entityId = ++instanceCount;
     }
     private void setName(String name){
         this.name = name;
     }
     public int getId(){
-        return this.idNumber;
+        return this.entityId;
     }
     public String getName(){
         return this.name;
