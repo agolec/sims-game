@@ -1,7 +1,8 @@
-package item;
+package item.appliance;
 
 import entities.Sim;
 import exceptions.InvalidEntityNameException;
+import item.Item;
 import utils.SimUtils;
 
 import java.util.ArrayList;
