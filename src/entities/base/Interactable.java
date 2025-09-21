@@ -1,6 +1,10 @@
 package entities.base;
 
+import item.action.Action;
+
+import java.util.List;
+
 public interface Interactable {
-    void interact();
+    List<Action> getAvailableActions();
 
 }
