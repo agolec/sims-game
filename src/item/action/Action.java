@@ -6,4 +6,5 @@ import item.Item;
 
 public interface Action {
     void perform(Entity actor, Interactable target);
+    String getName();
 }
