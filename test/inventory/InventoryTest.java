@@ -2,7 +2,6 @@ package inventory;
 
 import entities.Sim;
 import exceptions.InvalidEntityNameException;
-import item.Appliance;
 import item.Item;
 import item.food.FoodItem;
 import org.junit.Before;
@@ -21,9 +20,8 @@ public class InventoryTest {
         this.itemsSim1 = new ArrayList<>();
         try {
             this.testSim = new Sim("john");
-            this.itemsSim1.add(new FoodItem("beans",null,"beans can", false,1,1));
-            this.itemsSim1.add(new FoodItem("chips",null,"lays",false,1,1));
-            this.itemsSim1.add(new Appliance("trash compactor",null,"Smash-o-trash compator",false));
+            this.itemsSim1.add(new FoodItem("beans","beans can",1,1));
+            this.itemsSim1.add(new FoodItem("chips","lays",1,1));
         } catch (InvalidEntityNameException e) {
             System.out.println("Error: Failed to create sim: " + e.getMessage());
 

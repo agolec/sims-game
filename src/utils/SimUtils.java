@@ -10,7 +10,4 @@ public class SimUtils {
     public static boolean simExists(Sim sim){
         return sim != null;
     }
-    public static String getOwnerString(Item item) {
-        return item.hasOwner() ? "Owner: " + item.getOwner().toString() + "\n" : "Owner: none \n";
-    }
 }

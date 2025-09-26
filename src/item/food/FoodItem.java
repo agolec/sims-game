@@ -9,15 +9,15 @@ public class FoodItem extends Item {
     int uses;
     int energyProvided;
 
-    public FoodItem(String name, Sim owner, String description, boolean isKeyItem,int uses,int energyProvided) throws InvalidEntityNameException {
-        super(name, owner, description, isKeyItem);
+    public FoodItem(String name, String description,int uses,int energyProvided) throws InvalidEntityNameException {
+        super(name, description);
         setUses(uses);
         setEnergyProvided(energyProvided);
 
 
     }
     public FoodItem(FoodItem sourceItem) throws InvalidEntityNameException {
-        super(sourceItem.getName(),sourceItem.getOwner(),sourceItem.getDescription(),sourceItem.isKeyItem());
+        super(sourceItem.getName(),sourceItem.getDescription());
         this.setUses(sourceItem.getUses());
         this.setEnergyProvided(sourceItem.getEnergyProvided());
     }

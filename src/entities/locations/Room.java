@@ -1,10 +1,8 @@
 package entities.locations;
 
 import entities.Entity;
-import entities.Sim;
-import entities.base.Interactable;
 import entities.base.Location;
-import item.Item;
+
 import java.util.ArrayList;
 
 public class Room  extends Location {
