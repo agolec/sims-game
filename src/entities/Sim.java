@@ -1,13 +1,11 @@
 package entities;
 
-import entities.base.Interactable;
 import exceptions.InvalidEntityNameException;
 import inventory.Inventory;
 import item.Item;
 import item.food.FoodItem;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Sim extends Entity {
     private Inventory inventory;

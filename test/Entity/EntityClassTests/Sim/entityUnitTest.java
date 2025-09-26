@@ -46,8 +46,8 @@ public class entityUnitTest {
         ArrayList<Item> foodItems;
         try {
             foodItems = new ArrayList<Item>();
-            foodItems.add(new FoodItem("Gefilte Fish",null,"A fish made of poached mixture of ground deboned fish, such as carp, whitefish, or pike",false,2,5));
-            foodItems.add(new FoodItem("Corn Chips",null,"Snack food",false,8,2));
+            foodItems.add(new FoodItem("pasta dinner","some dinner",3,40));
+            foodItems.add(new FoodItem("Gefilte Fish","A fish made of poached mixture of ground deboned fish, such as carp, whitefish, or pike",2,25));
             aSim = new Sim("Tim", foodItems);
             Assert.assertEquals(1,foodItems.get(0).getId());
             Assert.assertEquals(2,foodItems.get(1).getId());

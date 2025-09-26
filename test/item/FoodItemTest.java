@@ -18,10 +18,9 @@ public class FoodItemTest {
             this.itemsSim1 = new ArrayList<>();
             try {
                 this.testSim = new Sim("john");
-                this.itemsSim1.add(new FoodItem("cookies",null,"cookies", false,1,1));
-                this.itemsSim1.add(new FoodItem("Cookie tin",null,"cookies in a tin",false,5,1));
-                this.itemsSim1.add(new FoodItem("chips",null,"lays",false,1,1));
-                this.itemsSim1.add(new Appliance("trash compactor",null,"Smash-o-trash compator",false));
+                this.itemsSim1.add(new FoodItem("cookies","cookies",1,1));
+                this.itemsSim1.add(new FoodItem("Cookie tin","cookies in a tin",5,1));
+                this.itemsSim1.add(new FoodItem("chips","lays",1,1));
             } catch (InvalidEntityNameException e) {
                 System.out.println("Error: Failed to create sim: " + e.getMessage());
 
